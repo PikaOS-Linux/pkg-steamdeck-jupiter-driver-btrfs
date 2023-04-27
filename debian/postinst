@@ -1,0 +1,7 @@
+#!/bin/sh
+
+set -e
+
+systemctl enable --now jupiter-biosupdate.service || echo "jupiter-biosupdate service could not be enabled"
+systemctl enable --now jupiter-controller-update.service || echo "jupiter-controller-update service could not be enabled"
+systemctl enable --now jupiter-fan-control.service || echo "jupiter-fan-control service could not be enabled"
