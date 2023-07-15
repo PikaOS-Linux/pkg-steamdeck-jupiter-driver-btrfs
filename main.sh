@@ -16,7 +16,7 @@ cd ./steamdeck-jupiter-driver
 apt-get build-dep ./ -y
 
 # Patch
-for i in ../patches/*.patch; do patch -Np1 -i $i || echo "Error: Patch $i failed" && exit 69 ;done
+for i in ../patches/*.patch; do patch -Np1 -i $i;done
 
 # Build package
 dpkg-buildpackage --no-sign
