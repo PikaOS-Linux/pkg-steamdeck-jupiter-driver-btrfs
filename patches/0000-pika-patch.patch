@@ -1,7 +1,7 @@
-diff --git usr/lib/hwsupport/power-button-handler.py usr/lib/hwsupport/power-button-handler.py
+diff --git a/usr/lib/hwsupport/power-button-handler.py b/usr/lib/hwsupport/power-button-handler.py
 index 1a46251..cbf7857 100755
---- usr/lib/hwsupport/power-button-handler.py
-+++ usr/lib/hwsupport/power-button-handler.py
+--- a/usr/lib/hwsupport/power-button-handler.py
++++ b/usr/lib/hwsupport/power-button-handler.py
 @@ -1,4 +1,4 @@
 -#!/usr/bin/python
 +#!/bin/env python3 -u
