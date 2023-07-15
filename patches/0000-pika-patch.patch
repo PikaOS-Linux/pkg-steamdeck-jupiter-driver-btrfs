@@ -1,24 +1,24 @@
-diff --git a/usr/lib/hwsupport/power-button-handler.py b/usr/lib/hwsupport/power-button-handler.py
-index 1a46251..cbf7857 100755
---- a/usr/lib/hwsupport/power-button-handler.py
-+++ b/usr/lib/hwsupport/power-button-handler.py
+diff '--color=auto' -ruN a/usr/lib/hwsupport/power-button-handler.py b/usr/lib/hwsupport/power-button-handler.py
+--- a/usr/lib/hwsupport/power-button-handler.py	2023-07-15 13:11:23.216903122 +0300
++++ b/usr/lib/hwsupport/power-button-handler.py	2023-07-15 13:36:06.703579100 +0300
 @@ -1,4 +1,4 @@
 -#!/usr/bin/python
-+#!/bin/env python3 -u
-
-diff -ur a/usr/share/jupiter-fan-control/fancontrol.py b/usr/share/jupiter-fan-control/fancontrol.py
---- a/usr/share/jupiter-fan-control/fancontrol.py	2022-12-23 13:14:48.861887067 -0800
-+++ b/usr/share/jupiter-fan-control/fancontrol.py	2022-12-23 00:42:03.223412367 -0800
++#!/usr/bin/python3 -u
+ 
+ import evdev
+ import threading
+diff '--color=auto' -ruN a/usr/share/jupiter-fan-control/fancontrol.py b/usr/share/jupiter-fan-control/fancontrol.py
+--- a/usr/share/jupiter-fan-control/fancontrol.py	2023-07-15 13:11:23.166902794 +0300
++++ b/usr/share/jupiter-fan-control/fancontrol.py	2023-07-15 13:34:50.755464270 +0300
 @@ -1,4 +1,4 @@
 -#!/usr/bin/python -u
 +#!/bin/env python3 -u
  """jupiter-fan-controller"""
  import signal
  import os
-
-diff -ur a/usr/share/jupiter-fan-control/PID.py b/usr/share/jupiter-fan-control/PID.py
---- a/usr/share/jupiter-fan-control/PID.py	2022-12-23 13:14:48.861887067 -0800
-+++ b/usr/share/jupiter-fan-control/PID.py	2022-12-23 00:42:03.222412347 -0800
+diff '--color=auto' -ruN a/usr/share/jupiter-fan-control/PID.py b/usr/share/jupiter-fan-control/PID.py
+--- a/usr/share/jupiter-fan-control/PID.py	2023-07-15 13:11:23.166902794 +0300
++++ b/usr/share/jupiter-fan-control/PID.py	2023-07-15 13:34:50.758797205 +0300
 @@ -1,4 +1,4 @@
 -#!/usr/bin/python
 +#!/bin/env python3
