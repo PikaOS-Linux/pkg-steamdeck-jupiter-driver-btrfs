@@ -1,3 +1,5 @@
+#! /bin/bash
+
 DEBIAN_FRONTEND=noninteractive
 
 # Clone Upstream
@@ -13,8 +15,11 @@ cd ./steamdeck-jupiter-driver
 # Get build deps
 apt-get build-dep ./ -y
 
+# Patch
+for i in ../patches/*.patch; do patch -Np1 -i $i ;done
+
 # Build package
-dpkg-buildpackage
+dpkg-buildpackage --no-sign
 
 # Move the debs to output
 cd ../

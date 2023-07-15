@@ -1,0 +1,81 @@
+From c3014c9bd771d5624230ebf464ba20816b9b2479 Mon Sep 17 00:00:00 2001
+From: GloriousEggroll <gloriouseggroll@gmail.com>
+Date: Sat, 8 Jul 2023 04:07:16 -0600
+Subject: [PATCH] Don't impose limits on gpu voltage,cpu voltage,screen
+ brightness,backlight if the device is in charging mode
+
+---
+ .../steamos-polkit-helpers/steamos-priv-write | 52 +++++++++++--------
+ 1 file changed, 30 insertions(+), 22 deletions(-)
+
+diff --git usr/bin/steamos-polkit-helpers/steamos-priv-write usr/bin/steamos-polkit-helpers/steamos-priv-write
+index 907133b..f57e2a4 100755
+--- usr/bin/steamos-polkit-helpers/steamos-priv-write
++++ usr/bin/steamos-polkit-helpers/steamos-priv-write
+@@ -25,34 +25,42 @@ function DeclineWrite()
+     exit 1
+ }
+ 
+-echo "checking: $WRITE_PATH" | systemd-cat -t p-steamos-priv-write -p warning
+-if [[ "$WRITE_PATH" == /sys/class/backlight/*/brightness ]]; then
+-   CommitWrite
+-fi
++HASBAT=$(upower -e | grep 'BAT')
++CHARGING="$(upower -i $(upower -e | grep 'BAT') | grep state | grep charging)"
++DEVICES="$(lspci | cut -c8- | grep -i -E '(vga|display|3d)' | grep -vi 'non-vga' | wc -l)"
+ 
++if [[ ! -z $HASBAT ]] && [[ $DEVICES < 2 ]] && [[ -z $CHARGING ]] ; then
+ 
+-if [[ "$WRITE_PATH" == /sys/class/drm/card*/device/power_dpm_force_performance_level ]]; then
+-   CommitWrite
+-fi
++	echo "checking: $WRITE_PATH" | systemd-cat -t p-steamos-priv-write -p warning
++	if [[ "$WRITE_PATH" == /sys/class/backlight/*/brightness ]]; then
++   		CommitWrite
++	fi
+ 
+-if [[ "$WRITE_PATH" == /sys/class/drm/card*/device/pp_od_clk_voltage ]]; then
+-   CommitWrite
+-fi
++	if [[ "$WRITE_PATH" == /sys/class/drm/card*/device/power_dpm_force_performance_level ]]; then
++   		CommitWrite
++	fi
+ 
+-if [[ "$WRITE_PATH" == /sys/class/hwmon/hwmon*/power*_cap ]]; then
+-   CommitWrite
+-fi
++	if [[ "$WRITE_PATH" == /sys/class/drm/card*/device/pp_od_clk_voltage ]]; then
++   		CommitWrite
++	fi
+ 
+-if [[ "$WRITE_PATH" == /sys/devices/platform/*/*/*/iio:device*/in_illuminance_integration_time ]]; then
+-   CommitWrite
+-fi
++	if [[ "$WRITE_PATH" == /sys/class/hwmon/hwmon*/power*_cap ]]; then
++   		CommitWrite
++	fi
+ 
+-if [[ "$WRITE_PATH" == /sys/devices/*/*/*/*/hwmon/hwmon*/led_brightness ]]; then
+-   CommitWrite
+-fi
++	if [[ "$WRITE_PATH" == /sys/devices/platform/*/*/*/iio:device*/in_illuminance_integration_time ]]; then
++   		CommitWrite
++	fi
++
++	if [[ "$WRITE_PATH" == /sys/devices/*/*/*/*/hwmon/hwmon*/led_brightness ]]; then
++   		CommitWrite
++	fi
++
++	if [[ "$WRITE_PATH" == /sys/devices/*/*/*/*/hwmon/hwmon*/content_adaptive_brightness ]]; then
++   		CommitWrite
++	fi
++
++	DeclineWrite
+ 
+-if [[ "$WRITE_PATH" == /sys/devices/*/*/*/*/hwmon/hwmon*/content_adaptive_brightness ]]; then
+-   CommitWrite
+ fi
+ 
+-DeclineWrite
+-- 
+2.41.0
