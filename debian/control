@@ -1,4 +1,4 @@
-Source: steamdeck-jupiter-driver
+Source: steamdeck-jupiter-driver-btrfs
 Section: games
 Priority: optional
 Maintainer: Ward Nakchbandi <hotrod.master@hotmail.com>
@@ -6,10 +6,10 @@ Build-Depends: debhelper-compat (= 13)
 Standards-Version: 4.6.1
 Homepage: https://github.com/KyleGospo/jupiter-hw-support.git
 
-Package: steamdeck-jupiter-driver
+Package: steamdeck-jupiter-driver-btrfs
 Section: games
 Architecture: amd64
 Depends: ${misc:Depends}, python3, python3-hid, python3-hidapi, python3-libevdev, python3-crcmod, python3-click, python3-progressbar2, libhidapi-hidraw0, libhidapi-libusb0, jq, alsa-utils, parted, python3-parted, libparted2, e2fsprogs
 Provides: jupiter-fan-control, jupiter-hw-support
-Description: Steam Deck Hardware Support Package
-Conflicts: steamdeck-jupiter-driver-btrfs
+Description: Steam Deck Hardware Support Package (BTRFS Branch)
+Conflicts: steamdeck-jupiter-driver

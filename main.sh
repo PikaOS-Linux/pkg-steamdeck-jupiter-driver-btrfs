@@ -4,13 +4,13 @@ DEBIAN_FRONTEND=noninteractive
 
 # Clone Upstream
 git clone https://github.com/KyleGospo/jupiter-fan-control
-git clone https://github.com/KyleGospo/jupiter-hw-support
-mkdir -p ./steamdeck-jupiter-driver
-cp -rvf ./jupiter-hw-support/usr ./jupiter-fan-control
-cp -rvf ./jupiter-hw-support/etc ./steamdeck-jupiter-driver
-cp -rvf ./jupiter-hw-support/usr ./steamdeck-jupiter-driver
-cp -rvf ./debian ./steamdeck-jupiter-driver
-cd ./steamdeck-jupiter-driver
+git clone https://github.com/KyleGospo/jupiter-hw-support -b btrfs
+mkdir -p ./steamdeck-jupiter-driver-btrfs
+cp -rvf ./jupiter-fan-control/usr ./steamdeck-jupiter-driver-btrfs
+cp -rvf ./jupiter-hw-support/etc ./steamdeck-jupiter-driver-btrfs
+cp -rvf ./jupiter-hw-support/usr ./steamdeck-jupiter-driver-btrfs
+cp -rvf ./debian ./steamdeck-jupiter-driver-btrfs
+cd ./steamdeck-jupiter-driver-btrfs
 
 # Get build deps
 apt-get build-dep ./ -y
