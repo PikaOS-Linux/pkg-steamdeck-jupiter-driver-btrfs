@@ -1,7 +1,14 @@
-#!/bin/sh
+#!/bin/bash
 
 set -e
 
-systemctl enable --now jupiter-biosupdate.service || echo "jupiter-biosupdate service could not be enabled"
-systemctl enable --now jupiter-controller-update.service || echo "jupiter-controller-update service could not be enabled"
-systemctl enable --now jupiter-fan-control.service || echo "jupiter-fan-control service could not be enabled"
+if [[ ":Jupiter:" =~ "$(cat /sys/devices/virtual/dmi/id/product_name)" ]]
+then
+    systemctl enable --now jupiter-biosupdate.service || echo "jupiter-biosupdate service could not be enabled"
+    systemctl enable --now jupiter-controller-update.service || echo "jupiter-controller-update service could not be enabled"
+    systemctl enable --now jupiter-fan-control.service || echo "jupiter-fan-control service could not be enabled"
+    systemctl --global enable --now sdgyrodsu.service  || echo "sdgyrodsu service could not be enabled"
+    systemctl enable --now sdgyrodsu.service || echo "sdgyrodsu service could not be enabled"
+    systemctl --global enable --now jupiter-controller-update.service || echo "jupiter-controller-updatel service could not be enabled"
+    systemctl --global enable --now jupiter-fan-control.service || echo "jupiter-fan-control service could not be enabled"
+fi
