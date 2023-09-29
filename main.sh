@@ -17,6 +17,7 @@ apt-get build-dep ./ -y
 
 # Patch
 for i in ../patches/*.patch; do patch -Np1 -i $i;done
+rm -rfv ./usr/lib/systemd/system/multi-user.target.wants
 
 # Build package
 dpkg-buildpackage --no-sign

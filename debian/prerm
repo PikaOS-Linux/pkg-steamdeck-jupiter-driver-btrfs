@@ -9,5 +9,3 @@ systemctl --global disable --now sdgyrodsu.service  || echo "sdgyrodsu service c
 systemctl disable --now sdgyrodsu.service || echo "sdgyrodsu service could not be disabled"
 systemctl --global disable --now jupiter-controller-update.service || echo "jupiter-controller-updatel service could not be disabled"
 systemctl --global disable --now jupiter-fan-control.service || echo "jupiter-fan-control service could not be disabled"
-rm /usr/lib/systemd/system/jupiter-controller-update.service || echo "jupiter-controller-update service could not be disabled"
-rm /usr/lib/systemd/system/jupiter-fan-control.service || echo "jupiter-fan-control service could not be disabled"
